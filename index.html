@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梁梓涵 Zihan Liang | 埃默里大学 Emory University</title>
+    <link rel="icon" type="image/png" href="figures/icon.png">
+    <style>
+        /* 全局重置与基础设置 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --contact-info-font-size: 25px;
+            --header-gap: 200px;
+            --intro-text-max-width: 520px;
+            --intro-text-padding-bottom: 20px;
+            --intro-text-font-size: 27px;
+        }
+
+        body {
+            /* 核心修改：使用非衬线体 (Sans-serif) */
+            /* 优先调用系统自带的高质量黑体：Mac上的苹方，Win上的微软雅黑/Segoe UI */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            line-height: 1.7; /* 增加行高，提升中文阅读体验 */
+            color: #333;
+            background-color: #fff;
+            font-size: 16px;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #0056b3; /* 经典的学术蓝链接色 */
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+            color: #003d82;
+        }
+
+        /* 页面主容器 */
+        .container {
+            max-width: 960px; /* 典型的学术网页宽度 */
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 顶部 Header 部分 (个人简介 + 照片) */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--header-gap);
+            margin-bottom: 50px;
+        }
+
+        .intro-text {
+            flex: 0 1 var(--intro-text-max-width);
+            max-width: var(--intro-text-max-width);
+            padding-top: 20px;
+            padding-bottom: var(--intro-text-padding-bottom);
+        }
+
+        .intro-text h1 {
+            font-size: var(--intro-text-font-size); /* 中文标题稍微调大一点 */
+            font-weight: normal;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #222;
+        }
+
+        .intro-text strong {
+            font-weight: 700;
+            color: #000;
+        }
+
+        /* 照片容器 */
+        .profile-photo {
+            flex: 0 0 300px; /* 固定宽度，防止挤压 */
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px; /* 这里稍微增加一点圆角，更现代 */
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 3/4; 
+            background-color: #f0f0f0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* 增加轻微阴影 */
+        }
+
+        /* 个人信息与 Bio 部分 */
+        .contact-info {
+            margin-bottom: 25px;
+            font-size: var(--contact-info-font-size);
+            color: #555;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee; /* 增加一条分隔线 */
+        }
+        
+        .contact-info span {
+            margin: 0 5px;
+            color: #ccc;
+        }
+
+        .bio-section p {
+            margin-bottom: 18px;
+            text-align: justify; /* 两端对齐 */
+        }
+
+        /* "What I'm Doing" 标题 */
+        .section-title {
+            font-size: 28px;
+            color: #2c4c8a; /* 保持深蓝色 */
+            margin: 50px 0 25px 0;
+            font-weight: 700;
+            border-left: 5px solid #2c4c8a; /* 增加左侧装饰条 */
+            padding-left: 15px;
+        }
+
+        /* 网格布局 (Grid) */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4列 */
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .grid-item {
+            text-align: center;
+            background: #fff;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 160px; /* 固定高度 */
+            object-fit: cover;
+            border: 1px solid #f0f0f0;
+            margin-bottom: 12px;
+            border-radius: 4px;
+            transition: transform 0.2s; /* 增加悬停动效 */
+        }
+
+        .grid-item:hover img {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .grid-item h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+            color: #111;
+            font-weight: 600;
+        }
+
+        .grid-item p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #666;
+            text-align: center;
+        }
+
+        /* 底部研究细节列表 */
+        .research-details p {
+            margin-bottom: 15px;
+        }
+
+        .research-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+
+        .research-list li {
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #444;
+        }
+
+        .research-list strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* 外部链接提示区 */
+        .external-section {
+            margin-top: 60px;
+        }
+
+        .external-card {
+            background: linear-gradient(135deg, #f7f9ff, #ffffff);
+            border: 1px solid #e7ecf7;
+            border-radius: 8px;
+            padding: 22px 24px;
+            box-shadow: 0 6px 16px rgba(44, 76, 138, 0.08);
+        }
+
+        .external-card p {
+            margin: 0 0 10px 0;
+            color: #445;
+        }
+
+        .external-card a {
+            font-weight: 600;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid #d7deef;
+            background: #fff;
+            transition: transform 0.2s, box-shadow 0.2s; /* 与项目图片一致 */
+        }
+
+        .external-card a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* 响应式设计：手机端适配 */
+        @media (max-width: 768px) {
+            .header-section {
+                flex-direction: column-reverse;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .intro-text {
+                padding-top: 0;
+            }
+            
+            .intro-text h1 {
+                font-size: 22px;
+                text-align: center; /* 手机端标题居中 */
+            }
+
+            .profile-photo {
+                flex: 0 0 auto;
+                width: 70%;
+                max-width: 280px;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr; /* 手机上变为单列 */
+                gap: 30px;
+            }
+
+            .grid-item p {
+                text-align: center; /* 手机上文字居中可能更好看 */
+                padding: 0 10px;
+            }
+            
+            .contact-info {
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 24px;
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 顶部介绍区域 -->
+    <header class="header-section">
+        <div class="intro-text">
+            <h1>
+                👋 你好！我是 <strong>梁梓涵</strong>，
+                目前是埃默里大学 (Emory University) 的本科研究员，致力于研究<strong>不确定性环境下的可靠机器学习</strong>。
+            </h1>
+        </div>
+        <div class="profile-photo">
+            <!-- 请将下方的src替换为你自己的照片路径 -->
+            <img src="figures/profile.jpg" alt="梁梓涵的照片">
+        </div>
+    </header>
+
+    <!-- 联系方式与 Bio -->
+    <section class="bio-section">
+        <div class="contact-info">
+            <strong>梁梓涵 Zihan Liang</strong> <span>|</span> <a href="mailto:zihan.liang@emory.edu">zihan.liang@emory.edu</a> <span>|</span> 埃默里大学 数据与决策科学系
+        </div>
+
+        <p>
+            在埃默里大学，我师从 <a href="https://www.ruoxuanxiong.com/">Prof. Ruoxuan Xiong</a>，主修应用数学与统计学。
+        </p>
+
+        <p>
+            我的研究方向主要集中在构建<strong>不确定性下的可靠机器学习系统</strong>，特别是在面对数据偏差、数据缺失或分布偏移的场景。我对围绕不确定性量化、鲁棒性（Robustness）以及缺失数据的方法论问题充满兴趣，并经常从因果推断和统计学的视角出发，以更好地理解模型行为。
+        </p>
+
+        <p>
+            我曾参与解决一系列应用问题——包括多模态医疗建模、应用自然语言处理 (NLP) 以及序列决策——这使我有机会在不同的领域和建模范式中研究这些可靠性挑战。
+        </p>
+    </section>
+
+    <!-- 项目展示区域 -->
+    <h2 class="section-title">目前的工作与项目</h2>
+    <div class="grid-container">
+        <!-- Item 1 -->
+        <div class="grid-item">
+            <img src="figures/ml-fig.png" alt="机器学习示意图">
+            <h3>机器学习</h3>
+            <p>开发能够将理论与医疗、自然语言处理等领域的实际应用相结合的创新模型。</p>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="grid-item">
+            <img src="figures/data-fig.png" alt="数据可视化图表">
+            <h3>数据可视化</h3>
+            <p>创建清晰且具有交互性的工具，将复杂的数据集转化为社区可用的行动洞察。</p>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="grid-item">
+            <img src="figures/aicomm-fig.jpg" alt="社区建设照片">
+            <h3>人工智能社区建设</h3>
+            <p>领导跨学科项目，降低人工智能技术的门槛，促进多元化背景学生之间的协作。</p>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="grid-item">
+            <img src="figures/culcomm-fig.jpg" alt="团队合影">
+            <h3>文化领导力</h3>
+            <p>通过大型活动和组织领导力，在美国推动有意义的互动与跨文化交流并宣传中国文化。</p>
+        </div>
+    </div>
+
+    <!-- 底部详细研究方向 -->
+    <section class="research-details">
+        <p>
+            我的研究核心在于<strong>构建现实世界不确定性下的可靠且鲁棒的机器学习系统</strong>，尤其关注<strong>数据不完整、有偏差和异构</strong>的场景。
+        </p>
+        <p>
+            我感兴趣的方法论问题围绕<strong>缺失数据 (Missing Data)、分布偏移 (Distribution Shift) 和多模态学习 (Multimodal Learning)</strong> 展开，探索这些因素如何影响模型的可靠性及下游决策。为了解决这些挑战，我利用<strong>因果推断、表征学习和现代深度学习</strong>工具，重点关注医疗健康和其他高风险领域。
+        </p>
+
+        <ul class="research-list">
+            <li>
+                <strong>缺失数据下的多模态学习：</strong> 开发能够明确解释“非随机缺失”(MNAR) 模式的模型，并在临床、推荐系统及多模态设置中将缺失本身视为信息信号。
+            </li>
+            <li>
+                <strong>鲁棒泛化与领域自适应：</strong> 设计自适应且经过校准的学习框架，以改善领域偏移下的跨数据集泛化能力，特别是在医学影像和时空系统方面。
+            </li>
+            <li>
+                <strong>因果与可靠性感知表征学习：</strong> 将因果视角与深度模型相结合，以提高现实世界数据的可解释性、泛化能力及偏差修正。
+            </li>
+            <li>
+                <strong>噪声与不平衡环境下的应用 NLP：</strong> 构建基于 Transformer 的系统，用于噪声和不平衡环境下的临床文本理解、情感分析及健康事件检测。
+            </li>
+        </ul>
+    </section>
+
+    <section class="external-section">
+        <h2 class="section-title">访问我的完整主页和简历</h2>
+        <div class="external-card">
+            <p>由于完整主页部分功能基于 Google 服务，部分地区的用户在访问时可能需要具备相应的网络访问条件。</p>
+            <p><a href="https://www.zihanliang.com">www.zihanliang.com</a></p>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
